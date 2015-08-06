@@ -1,3 +1,6 @@
+#!/usr/bin/python
+## Tiffany Timbers, 2015
+##
 ##extracts the strain names from a .txt file called 'MMP_combined_vcf_filenames.txt'
 ##generated with the shell command: find . -name "VC*.combined.vcf" | sort | uniq > MMP_combined_vcf_filenames.txt
 ##which is a list of .vcf filenames containing strain names that starts with VC 
@@ -9,8 +12,20 @@
 ##will be useful to test Stephane's new perl script to subset .vcf files for a given list of MMP strains from the 
 ##large merged .vcf file containing all the strains. It will also be useful to do SKAT on Nigel's MMP data.
 
-##import regular expression library
+
+##import libraries
+import sys
 import re
+
+def main():
+	input_file = sys.argv[1]
+	output_file = sys.argv[2]
+	strain_name_beginning = sys.argv[3]
+
+	## calls extract_strain_names() function and asks for strain names starting with the 
+	## letters at the command line to be extracted from input file and saved to the  
+	## output file
+	strain_names = extract_strain_names(input_file, output_file, strain_name_beginning)
 
 def extract_strain_names(file_to_read, file_to_write, strain_name_beg):
 	''' Saves a file of strain names from a file listing filenames containing strain names. Selects
@@ -46,6 +61,5 @@ def extract_strain_names(file_to_read, file_to_write, strain_name_beg):
 	##closes the file that was being written to
 	target.close()
 
-##calls extract_strain_names() function and asks for strain names starting with "VC" to be extracted
-##from "MMP_combined_vcf_filenames.txt" and saved to "list_VCstrains_vcf.txt"
-strain_names = extract_strain_names('MMP_combined_vcf_filenames.txt', 'list_VCstrains_vcf.txt', "VC")
+if __name__ == "__main__":
+	main()
