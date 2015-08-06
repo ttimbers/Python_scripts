@@ -1,5 +1,5 @@
 ##extracts the strain names from a .txt file called 'MMP_combined_vcf_filenames.txt'
-##generated with the shell command: find . name "VC*.combined.vcf" | sort | uniq > MMP_combined_vcf_filenames.txt
+##generated with the shell command: find . -name "VC*.combined.vcf" | sort | uniq > MMP_combined_vcf_filenames.txt
 ##which is a list of .vcf filenames containing strain names that starts with VC 
 ##and are < 8 characters long and writes the output to a .txt file called
 ##list_VCstrains_vcf.txt
